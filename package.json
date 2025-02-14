@@ -1,0 +1,22 @@
+{
+  "name": "my-browser-extension",
+  "version": "1.0.0",
+  "description": "A browser extension for enhancing user experience.",
+  "main": "src/background/background.js",
+  "scripts": {
+    "build": "echo 'Build script goes here'",
+    "test": "echo 'Test script goes here'"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "browser",
+    "extension"
+  ],
+  "author": "Smartlinuxcoder",
+  "license": "GNU GPL v3",
+}

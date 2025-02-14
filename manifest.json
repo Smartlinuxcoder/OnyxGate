@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "OnyxGate",
+  "version": "1.0",
+  "description": "Your privacy toolbox",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "cookies",
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html"
+  },
+  "background": {
+    "service_worker": "src/background/background.js"
+  }
+}

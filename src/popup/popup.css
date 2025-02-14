@@ -1,0 +1,83 @@
+body {
+    width: 320px;
+    padding: 16px;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+}
+
+#popup-container {
+    text-align: center;
+}
+
+h2 {
+    color: #b4befe;
+    margin-bottom: 1.5em;
+}
+
+.privacy-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #45475a;
+    border-color: #b4befe;
+}
+
+.user-agent-selector {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+select {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    background: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+select:focus, button:focus {
+    outline: 2px solid #b4befe;
+    outline-offset: 2px;
+}
+
+#status {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.success {
+    background: #313244;
+    color: #a6e3a1;
+    border: 1px solid #a6e3a1;
+}
+
+.error {
+    background: #313244;
+    color: #f38ba8;
+    border: 1px solid #f38ba8;
+}

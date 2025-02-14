@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup.css">
+    <title>OnyxGate Privacy</title>
+</head>
+<body>
+    <div id="popup-container">
+        <h2>🔒 OnyxGate Privacy</h2>
+        
+        <section class="privacy-tools">
+            <button id="deleteCookies">🍪 Delete All Cookies</button>
+            <button id="cleanUrl">🧹 Clean URL</button>
+            <div class="user-agent-selector">
+                <select id="userAgent">
+                    <option value="default">System Default</option>
+                    <option value="chrome">Google Chrome</option>
+                    <option value="firefox">Mozilla Firefox</option>
+                    <option value="safari">Safari</option>
+                    <option value="edge">Microsoft Edge</option>
+                </select>
+                <button id="changeUserAgent">📱 Apply</button>
+            </div>
+        </section>
+
+        <div id="status"></div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
