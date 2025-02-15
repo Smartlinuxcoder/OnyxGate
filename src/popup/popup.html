@@ -4,25 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>OnyxGate Privacy</title>
 </head>
 <body>
     <div id="popup-container">
         <header class="header">
-            <h2>🔒 OnyxGate Privacy</h2>
-            <button id="fastAnonymize" class="fast-anon-btn">🎭 Fast Anonymize</button>
+            <h2><i class="fas fa-shield-alt"></i> OnyxGate</h2>
+            <button id="fastAnonymize" class="fast-anon-btn">
+                <i class="fas fa-mask"></i>
+                <span>Quick Protect</span>
+            </button>
         </header>
 
         <div class="content-wrapper">
             <nav class="sections-nav">
-                <button data-section="links" class="active">🔗 Links</button>
-                <button data-section="cookies">🍪 Cookies</button>
-                <button data-section="identity">👤 Identity</button>
+                <button data-section="links" class="active">
+                    <i class="fas fa-link"></i> Links
+                </button>
+                <button data-section="cookies">
+                    <i class="fas fa-cookie-bite"></i> Cookies
+                </button>
+                <button data-section="identity">
+                    <i class="fas fa-user-shield"></i> Identity
+                </button>
             </nav>
 
             <section class="privacy-tools">
                 <div id="links-section" class="section-content">
-                    <h3>🔗 Link Cleaner</h3>
+                    <h3><i class="fas fa-link"></i> Link Cleaner</h3>
                     <div class="link-controls">
                         <label class="switch-label">
                             <input type="checkbox" id="autoCleanUrls">
@@ -36,7 +46,7 @@
                 </div>
 
                 <div id="cookies-section" class="section-content hidden">
-                    <h3>🍪 Cookie Control</h3>
+                    <h3><i class="fas fa-cookie-bite"></i> Cookie Control</h3>
                     <div class="control-panel">
                         <div class="site-specific">
                             <p>Current site: <span id="currentDomain"></span></p>
@@ -51,7 +61,7 @@
                 </div>
 
                 <div id="identity-section" class="section-content hidden">
-                    <h3>👤 User Agent</h3>
+                    <h3><i class="fas fa-user-shield"></i> User Agent</h3>
                     <div class="identity-controls">
                         <select id="userAgent">
                             <option value="default">System Default</option>
