@@ -8,25 +8,66 @@
 </head>
 <body>
     <div id="popup-container">
-        <h2>🔒 OnyxGate Privacy</h2>
-        
-        <section class="privacy-tools">
-            <button id="deleteCookies">🍪 Delete All Cookies</button>
-            <button id="cleanUrl">🧹 Clean URL</button>
-            <div class="user-agent-selector">
-                <select id="userAgent">
-                    <option value="default">System Default</option>
-                    <option value="chrome">Google Chrome</option>
-                    <option value="firefox">Mozilla Firefox</option>
-                    <option value="safari">Safari</option>
-                    <option value="edge">Microsoft Edge</option>
-                </select>
-                <button id="changeUserAgent">📱 Apply</button>
-            </div>
-        </section>
+        <header class="header">
+            <h2>🔒 OnyxGate Privacy</h2>
+            <button id="fastAnonymize" class="fast-anon-btn">🎭 Fast Anonymize</button>
+        </header>
 
-        <div id="status"></div>
+        <div class="content-wrapper">
+            <nav class="sections-nav">
+                <button data-section="links" class="active">🔗 Links</button>
+                <button data-section="cookies">🍪 Cookies</button>
+                <button data-section="identity">👤 Identity</button>
+            </nav>
+
+            <section class="privacy-tools">
+                <div id="links-section" class="section-content">
+                    <h3>🔗 Link Cleaner</h3>
+                    <div class="link-controls">
+                        <label class="switch-label">
+                            <input type="checkbox" id="autoCleanUrls">
+                            Auto-Clean All URLs
+                        </label>
+                        <div class="url-info">
+                            <p>Current URL: <span id="currentUrl" class="url-text"></span></p>
+                            <button id="cleanCurrentUrl">Clean Current URL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cookies-section" class="section-content hidden">
+                    <h3>🍪 Cookie Control</h3>
+                    <div class="control-panel">
+                        <div class="site-specific">
+                            <p>Current site: <span id="currentDomain"></span></p>
+                            <button id="clearSiteCookies">Clear Site Cookies</button>
+                            <label>
+                                <input type="checkbox" id="blockThirdParty" checked>
+                                Block Third-Party
+                            </label>
+                        </div>
+                        <button id="clearAllCookies">Clear All Cookies</button>
+                    </div>
+                </div>
+
+                <div id="identity-section" class="section-content hidden">
+                    <h3>👤 User Agent</h3>
+                    <div class="identity-controls">
+                        <select id="userAgent">
+                            <option value="default">System Default</option>
+                            <option value="chrome">Google Chrome</option>
+                            <option value="firefox">Mozilla Firefox</option>
+                            <option value="safari">Safari</option>
+                            <option value="edge">Microsoft Edge</option>
+                        </select>
+                        <button id="randomizeUserAgent">🎲 Randomize</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="status" class="status-banner hidden"></div>
     </div>
-    <script src="popup.js"></script>
+    <script type="module" src="popup.js"></script>
 </body>
 </html>

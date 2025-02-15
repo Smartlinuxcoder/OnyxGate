@@ -1,83 +1,249 @@
 body {
-    width: 320px;
-    padding: 16px;
+    width: 380px;
+    padding: 0;
     background: #1e1e2e;
     color: #cdd6f4;
     font-family: system-ui, -apple-system, sans-serif;
     margin: 0;
+    display: flex;
 }
 
 #popup-container {
-    text-align: center;
+    display: flex;
+    width: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 16px;
+    background: #11111b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #45475a;
+    z-index: 10;
 }
 
 h2 {
     color: #b4befe;
-    margin-bottom: 1.5em;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.sections-nav {
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    background: #181825;
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    border-right: 1px solid #313244;
+}
+
+.sections-nav button {
+    background: transparent;
+    border: none;
+    color: #cdd6f4;
+    padding: 12px;
+    text-align: left;
+    border-radius: 0;
+    border-left: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.sections-nav button:hover {
+    background: #313244;
+    border-color: #89b4fa;
+}
+
+.sections-nav button.active {
+    background: #313244;
+    border-left-color: #b4befe;
+    color: #b4befe;
 }
 
 .privacy-tools {
+    flex: 1;
+    margin-left: 140px;
+    padding: 20px;
+}
+
+.section-content {
+    background: #313244;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: opacity 0.2s ease;
+}
+
+.section-content.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.section-content:not(.hidden) {
+    display: block;
+    opacity: 1;
+}
+
+.section-content h3 {
+    margin-top: 0;
+    color: #b4befe;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.toggle-group, .control-panel, .identity-controls, .advanced-controls {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin: 15px 0;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background: #313244;
-    color: #cdd6f4;
-    border: 1px solid #45475a;
-    border-radius: 8px;
-    cursor: pointer;
+.fast-anon-btn {
+    background: #f38ba8;
+    color: #1e1e2e;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
     transition: all 0.2s ease;
-    font-size: 14px;
 }
 
-button:hover {
-    background: #45475a;
-    border-color: #b4befe;
+.fast-anon-btn:hover {
+    background: #f5a9b8;
+    transform: translateY(-1px);
 }
 
-.user-agent-selector {
+label {
     display: flex;
+    align-items: center;
     gap: 8px;
-    margin-top: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+label:hover {
+    background: #45475a;
+}
+
+input[type="checkbox"] {
+    accent-color: #b4befe;
+    width: 16px;
+    height: 16px;
 }
 
 select {
-    flex: 1;
+    width: 100%;
     padding: 10px;
-    border-radius: 8px;
-    background: #313244;
+    background: #45475a;
     color: #cdd6f4;
-    border: 1px solid #45475a;
+    border: 1px solid #6c7086;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
 }
 
-select:focus, button:focus {
-    outline: 2px solid #b4befe;
-    outline-offset: 2px;
+button {
+    padding: 10px;
+    background: #45475a;
+    color: #cdd6f4;
+    border: 1px solid #6c7086;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-#status {
-    margin-top: 12px;
-    padding: 12px;
+button:hover {
+    background: #585b70;
+    border-color: #b4befe;
+}
+
+.status-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
     border-radius: 8px;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    text-align: center;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.success {
-    background: #313244;
-    color: #a6e3a1;
-    border: 1px solid #a6e3a1;
+.status-banner.success { background: #a6e3a1; color: #1e1e2e; }
+.status-banner.error { background: #f38ba8; color: #1e1e2e; }
+.status-banner.info { background: #89b4fa; color: #1e1e2e; }
+
+.hidden {
+    display: none !important;
 }
 
-.error {
-    background: #313244;
-    color: #f38ba8;
-    border: 1px solid #f38ba8;
+[data-section="browsing"]::before { content: "🌐"; }
+[data-section="cookies"]::before { content: "🍪"; }
+[data-section="identity"]::before { content: "👤"; }
+[data-section="advanced"]::before { content: "⚙️"; }
+
+.link-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.url-info {
+    background: #181825;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+.url-text {
+    display: block;
+    word-break: break-all;
+    font-family: monospace;
+    background: #11111b;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 8px 0;
+    max-height: 60px;
+    overflow-y: auto;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #181825;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.switch-label:hover {
+    background: #1e1e2e;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera, apparently I need this */
+.url-text::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.url-text {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

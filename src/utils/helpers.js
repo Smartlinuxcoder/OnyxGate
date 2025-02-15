@@ -19,59 +19,38 @@ export const userAgents = {
     edge: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"
 };
 
-const cleanUrl = (url) => {
-    try {
-        const urlObj = new URL(url);
-        urlObj.search = '';
-        urlObj.hash = '';
-        return urlObj.toString();
-    } catch (e) {
-        console.error('URL cleaning error:', e);
-        return url;
-    }
-};
+export const trackingParams = [
+    'igsh', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+    'fbclid', 'gclid', 'ocid', 'igshid', '_hsenc', '_hsmi', '_ga', '_gl', 
+    'hsCtaTracking', '_openstat', '_ga_', 'mc_cid', 'mc_eid', 'ref', 'referral', 
+    'source', 'fb_ref', 'fb_source', 'campaign_id', 'campaign_name', 'adset_id', 
+    'ad_id', 'placement', 'ig_mid', 'ig_rid', 'ig_es', 'ig_share_tool', 'igshid_ref'
+];
 
-const deleteCookies = async (url) => {
-    try {
-        const domain = new URL(url).hostname;
-        const cookies = await chrome.cookies.getAll({ domain });
-        
-        const deletionPromises = cookies.map(cookie => {
-            const protocol = cookie.secure ? 'https:' : 'http:';
-            const cookieUrl = `${protocol}//${cookie.domain}${cookie.path}`;
-            
-            return chrome.cookies.remove({
-                url: cookieUrl,
-                name: cookie.name,
-                storeId: cookie.storeId
-            });
-        });
-
-        await Promise.all(deletionPromises);
-        return cookies.length;
-    } catch (e) {
-        console.error('Cookie deletion error:', e);
-        throw e;
-    }
-};
-
-const getUserAgentSetting = async () => {
+export const messageHandler = (action, data) => {
     return new Promise((resolve) => {
-        chrome.runtime.sendMessage({ action: 'getUserAgent' }, (response) => {
-            resolve(response.userAgent);
-        });
+        chrome.runtime.sendMessage({ action, ...data }, resolve);
     });
 };
 
-const setUserAgentSetting = async (userAgent) => {
-    return new Promise((resolve) => {
-        chrome.runtime.sendMessage({ 
-            action: 'setUserAgent', 
-            userAgent: userAgent
-        }, (response) => {
-            resolve(response.success);
-        });
-    });
-};
+export const browserActions = {
+    async getUserAgent() {
+        const response = await messageHandler('getUserAgent');
+        return response.userAgent;
+    },
 
-export { colors, userAgents, cleanUrl, deleteCookies, getUserAgentSetting, setUserAgentSetting };
+    async setUserAgent(userAgent) {
+        const response = await messageHandler('setUserAgent', { userAgent });
+        return response.success;
+    },
+
+    async clearCookies(domain) {
+        const response = await messageHandler('clearCookies', { domain });
+        return response;
+    },
+
+    async cleanUrl(url, aggressive = false) {
+        const response = await messageHandler('cleanUrl', { url, aggressive });
+        return response;
+    }
+};
